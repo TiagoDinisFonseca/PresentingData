@@ -15,6 +15,10 @@ data <- aggregate(data_y, filter, sum)
 
 # Doing the plot
 png('plot4.png', width = 480, height = 480)
-plot(data$tmp.year, data$tmp.Emissions, main = "Emissions from coal combustion, US", xlab = "year", ylab = "Emissions (tons)", col = "red", type = "b")
+plot(data$tmp.year, data$tmp.Emissions, main = "Emissions from coal combustion, US", xlab = "year", ylab = "Emissions (tons)", col = "black", type = "p", ylim = c(0, max(data$tmp.Emissions)), axes = F)
+box()
+axis(2)
+axis(1, at = data$tmp.year)
+abline(lm(data$tmp.Emissions ~ data$tmp.year), col = "red")
 dev.off()
 message("Created the plot on the file \'plot4.png\'")
